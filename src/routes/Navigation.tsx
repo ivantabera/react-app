@@ -1,10 +1,31 @@
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from "react-router-dom";
 import logo  from '../logo.svg';
-
-/* Importamos un index para evitar las importaciones en volumen */
-import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/pages/index';
+/* archivo de rutas para hacerlos de manera dinamica */
+import { routes } from './Routes';
 
 export const Navigation = () => {
+
+    /* hacer los NavLink de manera dinamica */
+    const dinamicNavLink = routes.map((navlink) => 
+        <li key={navlink.to}>
+            <NavLink 
+                to={navlink.to} 
+                className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
+            >
+                {navlink.name}
+            </NavLink>
+        </li>
+    );
+
+    /* hcer los route dinamicos  */
+    const dinamicRoute = routes.map( (route) => 
+        <Route 
+            key={route.to}
+            path={route.path} 
+            element={ <route.Component/> } 
+        />
+    )
+
     return (
         <BrowserRouter>
 
@@ -12,38 +33,13 @@ export const Navigation = () => {
                 <nav>
                     <img src={logo} alt="logo-react" />
                     <ul>
-                        <li>
-                            <NavLink 
-                                to="/lazy1" 
-                                className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
-                            >
-                                Lazy page 1
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink 
-                                to="/lazy2" 
-                                className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
-                            >
-                                Lazy page 2
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink 
-                                to="/lazy3" 
-                                className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
-                            >
-                                Lazy page 3
-                            </NavLink>
-                        </li>
+                        { dinamicNavLink }
                     </ul>
                 </nav>
 
                 <Routes>
-                    <Route path="lazy1" element={ <LazyPage1/> } />
-                    <Route path="lazy2" element={ <LazyPage2/> } />
-                    <Route path="lazy3" element={ <LazyPage3/> } />
-                    <Route path="/*" element={ <Navigate to="lazy1" replace /> } />
+                    { dinamicRoute }
+                    <Route path="/*" element={ <Navigate to={routes[0].to} replace /> } />
                 </Routes>
             </div>
 
