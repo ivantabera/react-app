@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from "react-router-dom";
 import logo  from '../logo.svg';
 
+/* Importamos un index para evitar las importaciones en volumen */
 import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/pages/index';
 
 export const Navigation = () => {
@@ -13,7 +14,7 @@ export const Navigation = () => {
                     <ul>
                         <li>
                             <NavLink 
-                                to="/lazypage1" 
+                                to="/lazy1" 
                                 className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
                             >
                                 Lazy page 1
@@ -21,7 +22,7 @@ export const Navigation = () => {
                         </li>
                         <li>
                             <NavLink 
-                                to="/lazypage2" 
+                                to="/lazy2" 
                                 className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
                             >
                                 Lazy page 2
@@ -29,7 +30,7 @@ export const Navigation = () => {
                         </li>
                         <li>
                             <NavLink 
-                                to="/lazypage3" 
+                                to="/lazy3" 
                                 className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
                             >
                                 Lazy page 3
@@ -39,10 +40,10 @@ export const Navigation = () => {
                 </nav>
 
                 <Routes>
-                    <Route path="lazypage1" element={ <LazyPage1/> } />
-                    <Route path="lazypage2" element={ <LazyPage2/> } />
-                    <Route path="lazypage3" element={ <LazyPage3/> } />
-                    <Route path="lazypage1" element={ <Navigate to="lazypage1" replace /> } />
+                    <Route path="lazy1" element={ <LazyPage1/> } />
+                    <Route path="lazy2" element={ <LazyPage2/> } />
+                    <Route path="lazy3" element={ <LazyPage3/> } />
+                    <Route path="/*" element={ <Navigate to="lazy1" replace /> } />
                 </Routes>
             </div>
 
