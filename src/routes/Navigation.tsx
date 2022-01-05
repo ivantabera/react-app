@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from "react-router-dom";
 import logo  from '../logo.svg';
 /* archivo de rutas para hacerlos de manera dinamica */
@@ -27,22 +28,25 @@ export const Navigation = () => {
     )
 
     return (
-        <BrowserRouter>
+        /* agregamos el suspense para agregar lazyload a la app  */
+        <Suspense fallback={ <span>Loading...</span> }>
+            <BrowserRouter>
 
-            <div className="main-layout">
-                <nav>
-                    <img src={logo} alt="logo-react" />
-                    <ul>
-                        { dinamicNavLink }
-                    </ul>
-                </nav>
+                <div className="main-layout">
+                    <nav>
+                        <img src={logo} alt="logo-react" />
+                        <ul>
+                            { dinamicNavLink }
+                        </ul>
+                    </nav>
 
-                <Routes>
-                    { dinamicRoute }
-                    <Route path="/*" element={ <Navigate to={routes[0].to} replace /> } />
-                </Routes>
-            </div>
+                    <Routes>
+                        { dinamicRoute }
+                        <Route path="/*" element={ <Navigate to={routes[0].to} replace /> } />
+                    </Routes>
+                </div>
 
-        </BrowserRouter>
+            </BrowserRouter>
+        </Suspense>
     )
 }
