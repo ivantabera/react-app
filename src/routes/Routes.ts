@@ -15,9 +15,10 @@ interface Route {
 };
 
 /* Definimos un componente que sea cargado bajo demanda */
-const lazy1 = ( lazy( () => import('../01-lazyload/pages/LazyPage1') ));
-const Lazy2 = ( lazy( () => import('../01-lazyload/pages/LazyPage2') ));
-const Lazy3 = ( lazy( () => import('../01-lazyload/pages/LazyPage3') ));
+/* Renombramos el chunk para verlo en la red/network de nuestro navegador */
+const lazy1 = ( lazy( () => import( /* webpackChunkName: "LazyPage1" */ '../01-lazyload/pages/LazyPage1') ));
+const Lazy2 = ( lazy( () => import( /* webpackChunkName: "LazyPage2" */ '../01-lazyload/pages/LazyPage2') ));
+const Lazy3 = ( lazy( () => import( /* webpackChunkName: "LazyPage3" */ '../01-lazyload/pages/LazyPage3') ));
 
 /* Preparamos nuestras rutas para hacerlas dinamicas en nuestro componente Navigation */
 export const routes:Route[] = [
