@@ -12,21 +12,30 @@ interface Product {
     img?: string;
 }
 
-/* Componente hijo que recibe parametro */
-export const ProductCard = ( { product }: Props ) => {
-
-    const {count, increaseBy} = useProduct();
-
+/* Imagen del producto */
+export const ProductImage = ( { img = '' } ) => {
     return (
-        <div className={style.productCard}>
-            
-            <img className={style.productImg} src={ product.img ? product.img : noImage } alt="Coffee Mug" />
+        <img className={style.productImg} src={ img ? img : noImage } alt="Product Image" />
+    )
+};
 
-            {/* Descripcion de la imagen */}
-            <span className={style.productDescription}>{ product.title }</span>
+/* Descripcion del producto */
+export const ProductTitle = ( { title = '' } ) => {
+    return (
+        <span className={style.productDescription}>{ title }</span>
+    )
+};
 
-            {/* Botonera de la imagen */}
-            <div className={style.buttonsContainer}>
+/* interface de como va recibir las variables nuestro componente */
+interface ProductButtonsProps {
+    increaseBy:(value: number) => void;
+    count: number;
+}
+
+/* Componente de la botonera de productos */
+export const ProductButtons = ( {increaseBy, count}:ProductButtonsProps ) => {
+    return(
+        <div className={style.buttonsContainer}>
 
                 <button 
                     className={style.buttonMinus} 
@@ -45,6 +54,28 @@ export const ProductCard = ( { product }: Props ) => {
                 </button>
 
             </div>
+    )
+}
+
+/* Componente hijo que recibe parametro */
+export const ProductCard = ( { product }: Props ) => {
+
+    const {count, increaseBy} = useProduct();
+
+    return (
+        <div className={style.productCard}>
+            
+            {/* Imagen del producto */}
+            <ProductImage img={ product.img } />
+
+            {/* Descripcion de la imagen */}
+            <ProductTitle title={ product.title } />
+
+            {/* Botonera de la imagen */}
+            <ProductButtons 
+                increaseBy={increaseBy} 
+                count={count} 
+            />
 
         </div>
     )
