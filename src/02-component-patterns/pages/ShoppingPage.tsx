@@ -23,21 +23,15 @@ export const ShoppingPage = () => {
                 {/* Compound Component Patther forma 1 */}
                 <ProductCard product={product} >
                     <ProductImage />
-                    <ProductTitle title={'hola mundo'} />
-                    <ProductButtons increaseBy={function (value: number): void {
-                        throw new Error('Function not implemented.');
-                    } } count={0} />
+                    <ProductTitle />
+                    <ProductButtons />
                 </ProductCard>
 
                 {/* Compound Component Patther forma 2 */}
                 <ProductCard product={product} >
                     <ProductCard.Image />
-                    <ProductCard.Title title={'hola mundo'} />
-                    <ProductCard.Buttons 
-                        increaseBy={function (value: number): void {
-                            throw new Error('Function not implemented.');
-                        } } 
-                        count={0}/>
+                    <ProductCard.Title />
+                    <ProductCard.Buttons />
                 </ProductCard>
             
             </div>
