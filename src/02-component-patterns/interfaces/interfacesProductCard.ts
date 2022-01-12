@@ -1,18 +1,18 @@
 import { ReactElement } from "react";
 
-export interface PropsProductCard {
+export interface IPropsProductCard {
     children: ReactElement | ReactElement[] ;
-    product: Product;
+    product: IProduct;
 }
 
-export interface Product {
+export interface IProduct {
     id: string;
     title: string;
     img?: string;
 }
 
-export interface ProductContextProps {
+export interface IProductContextProps {
     count:number;
     increaseBy: (value: number) => void;
-    product: Product;
+    product: IProduct;
 }
