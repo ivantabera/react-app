@@ -2,6 +2,7 @@ import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../comp
 
 import '../styles/custom-styles.css';
 import { IProduct } from '../interfaces/interfacesProductCard';
+import { useState } from 'react';
 
 const product1 = {
     id:'1',
@@ -17,7 +18,16 @@ const product2 = {
 
 const products:IProduct[] = [ product1, product2 ];
 
+interface IProductInCart extends IProduct {
+    count:number;
+}
+
 export const ShoppingPage = () => {
+
+    /* el hook state su primitivo sera un objeto con el arreglo key de tipo string 
+        "no es un arreglo es para indicarle al state que seran X cantidad de llaves"
+    */
+    const [shoppingCart, setShoppingCart] = useState<{ [key:string]:IProductInCart }>({});
 
     return (
         <div>
