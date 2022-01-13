@@ -27,19 +27,53 @@ export const ShoppingPage = () => {
                     product={product}
                     className='bg-dark' 
                 >
-                    <ProductImage />
-                    <ProductTitle />
-                    <ProductButtons />
+                    <ProductImage 
+                        className='custom-image' 
+                        img={''}
+                    />
+                    <ProductTitle 
+                        className='white-text'
+                    />
+                    <ProductButtons 
+                        className='custom-buttons'
+                    />
                 </ProductCard>
 
                 {/* Compound Component Patther forma 2 */}
                 <ProductCard 
                     product={product} 
-                    className={''} 
+                    className='bg-dark' 
                 >
-                    <ProductCard.Image />
-                    <ProductCard.Title />
-                    <ProductCard.Buttons />
+                    <ProductCard.Image 
+                        className='custom-image' 
+                        img={''}
+                    />
+                    <ProductCard.Title 
+                        className='white-text'
+                    />
+                    <ProductCard.Buttons 
+                        className='custom-buttons'
+                    />
+                </ProductCard>
+
+                {/* Compound Component Patther forma 1 */}
+                <ProductCard 
+                    product={product}
+                    style={{ backgroundColor: '#70D1F8' }}
+                >
+                    <ProductImage 
+                        img={''}
+                        style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
+                    />
+                    <ProductTitle 
+                        style={{ fontWeight: 'bold' }}
+                    />
+                    <ProductButtons 
+                        style={{ 
+                            display: 'flex',
+                            justifyContent: 'end'
+                        }}
+                    />
                 </ProductCard>
             
             </div>

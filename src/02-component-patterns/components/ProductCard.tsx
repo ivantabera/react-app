@@ -1,8 +1,8 @@
-import { createContext, ReactElement } from "react";
+import { createContext, CSSProperties, ReactElement } from "react";
 import { useProduct } from '../hooks/useProduct';
 import { IProduct, IProductContextProps } from "../interfaces/interfacesProductCard";
 
-import style from "../styles/styles.module.css";
+import styles from "../styles/styles.module.css";
 
 
 /* Creamos contexto para el producto  */
@@ -11,14 +11,15 @@ export const ProductContext = createContext( {} as IProductContextProps );
 /* Proveedor para nuestro Compound Component Patther */
 const { Provider } = ProductContext;
 
-export interface IProps {
+export interface IPropsProductCard {
     children: ReactElement | ReactElement[] ;
     product: IProduct;
-    className: string;
+    className?: string;
+    style?: CSSProperties;
 }
 
 /* Componente hijo que recibe parametro */
-export const ProductCard = ( { children ,product, className }: IProps ) => {
+export const ProductCard = ( { children ,product, className, style }: IPropsProductCard ) => {
 
     const {count, increaseBy} = useProduct();
 
@@ -30,7 +31,10 @@ export const ProductCard = ( { children ,product, className }: IProps ) => {
                 product
             }
         }>
-            <div className={` ${style.productCard} ${className}`}>
+            <div 
+                className={` ${styles.productCard} ${className}`}
+                style={style}
+            >
                 { children }
             </div>
         </Provider>
