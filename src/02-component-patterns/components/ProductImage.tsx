@@ -26,7 +26,7 @@ export const ProductImage = ( { img, className, style }: IPropsProductImage ) =>
 
     return (
         <img 
-            alt="Product Image" 
+            alt="Product" 
             className={` ${styles.productImg} ${className}`} 
             src={ imgToShow } 
             style={ style }
