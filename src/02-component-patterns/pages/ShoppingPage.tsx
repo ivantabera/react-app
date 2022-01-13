@@ -1,6 +1,7 @@
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
 
 import '../styles/custom-styles.css';
+import { IProduct } from '../interfaces/interfacesProductCard';
 
 const product1 = {
     id:'1',
@@ -13,6 +14,8 @@ const product2 = {
     title:'coffe mug 2',
     img:'./coffee-mug2.png'
 }
+
+const products:IProduct[] = [ product1, product2 ];
 
 export const ShoppingPage = () => {
 
@@ -28,41 +31,43 @@ export const ShoppingPage = () => {
                 flexWrap:'wrap'
             }}>
 
-                {/* Compound Component Patther forma 1 */}
-                <ProductCard 
-                    product={product1}
-                    className='bg-dark' 
-                >
-                    <ProductImage 
-                        className='custom-image' 
-                        img={''}
-                    />
-                    <ProductTitle 
-                        className='white-text'
-                    />
-                    <ProductButtons 
-                        className='custom-buttons'
-                    />
-                </ProductCard>
-
-                {/* Compound Component Patther forma 2 */}
-                <ProductCard 
-                    product={product2} 
-                    className='bg-dark' 
-                >
-                    <ProductCard.Image 
-                        className='custom-image' 
-                        img={''}
-                    />
-                    <ProductCard.Title 
-                        className='white-text'
-                    />
-                    <ProductCard.Buttons 
-                        className='custom-buttons'
-                    />
-                </ProductCard>
+                {
+                    products.map( product => (
+                        /* Compound Component Patther forma 1 */ 
+                        <ProductCard 
+                            key={ product.id }
+                            product={product}
+                            className='bg-dark'
+                        >
+                            <ProductImage className='custom-image' />
+                            <ProductTitle className='white-text' />
+                            <ProductButtons className='custom-buttons'/>
+                        </ProductCard>
+                    ))
+                }
             
             </div>
+
+            <div className='shopping-cart'>
+                <ProductCard 
+                    product={product1}
+                    className='bg-dark'
+                    style={{ width: '100px' }}
+                >
+                    <ProductImage className='custom-image' />
+                    <ProductButtons className='custom-buttons'/>
+                </ProductCard>
+
+                <ProductCard 
+                    product={product2}
+                    className='bg-dark'
+                    style={{ width: '100px' }}
+                >
+                    <ProductImage className='custom-image' />
+                    <ProductButtons className='custom-buttons'/>
+                </ProductCard>
+            </div>
+
         </div>
     )
 }
