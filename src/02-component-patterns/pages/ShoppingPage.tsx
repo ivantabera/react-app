@@ -29,6 +29,10 @@ export const ShoppingPage = () => {
     */
     const [shoppingCart, setShoppingCart] = useState<{ [key:string]:IProductInCart }>({});
 
+    const onProductCountChange = () => {
+        console.log('onProductCountChange');
+    }
+
     return (
         <div>
             
@@ -48,6 +52,7 @@ export const ShoppingPage = () => {
                             key={ product.id }
                             product={product}
                             className='bg-dark'
+                            onChange={ () => onProductCountChange()  }
                         >
                             <ProductImage className='custom-image' />
                             <ProductTitle className='white-text' />
@@ -63,6 +68,7 @@ export const ShoppingPage = () => {
                     product={product1}
                     className='bg-dark'
                     style={{ width: '100px' }}
+                    onChange={ () => onProductCountChange()  }
                 >
                     <ProductImage className='custom-image' />
                     <ProductButtons className='custom-buttons'/>

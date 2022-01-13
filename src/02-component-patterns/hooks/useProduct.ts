@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export const useProduct = () => {
+export const useProduct = ( onChange?: (() => void) ) => {
 
     const [count, setCount] = useState(0);
 
@@ -9,6 +9,8 @@ export const useProduct = () => {
     const increaseBy = ( value:number ) => {
         setCount(prev => Math.max( prev + value, 0 ) )
     }
+
+    onChange && onChange()
 
     return {
         increaseBy,
