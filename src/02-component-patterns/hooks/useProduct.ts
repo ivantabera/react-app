@@ -10,6 +10,7 @@ export const useProduct = ( onChange?: (() => void) ) => {
         setCount(prev => Math.max( prev + value, 0 ) )
     }
 
+    /* Evaluamos que onChange venga con algun valor de lo contrario no se ejecutara */
     onChange && onChange()
 
     return {
