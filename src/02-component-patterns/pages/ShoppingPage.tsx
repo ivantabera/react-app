@@ -2,10 +2,16 @@ import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../comp
 
 import '../styles/custom-styles.css';
 
-const product = {
+const product1 = {
     id:'1',
     title:'coffe mug',
     img:'./coffee-mug.png'
+}
+
+const product2 = {
+    id:'2',
+    title:'coffe mug 2',
+    img:'./coffee-mug2.png'
 }
 
 export const ShoppingPage = () => {
@@ -24,7 +30,7 @@ export const ShoppingPage = () => {
 
                 {/* Compound Component Patther forma 1 */}
                 <ProductCard 
-                    product={product}
+                    product={product1}
                     className='bg-dark' 
                 >
                     <ProductImage 
@@ -41,7 +47,7 @@ export const ShoppingPage = () => {
 
                 {/* Compound Component Patther forma 2 */}
                 <ProductCard 
-                    product={product} 
+                    product={product2} 
                     className='bg-dark' 
                 >
                     <ProductCard.Image 
@@ -53,26 +59,6 @@ export const ShoppingPage = () => {
                     />
                     <ProductCard.Buttons 
                         className='custom-buttons'
-                    />
-                </ProductCard>
-
-                {/* Compound Component Patther forma 1 */}
-                <ProductCard 
-                    product={product}
-                    style={{ backgroundColor: '#70D1F8' }}
-                >
-                    <ProductImage 
-                        img={''}
-                        style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
-                    />
-                    <ProductTitle 
-                        style={{ fontWeight: 'bold' }}
-                    />
-                    <ProductButtons 
-                        style={{ 
-                            display: 'flex',
-                            justifyContent: 'end'
-                        }}
                     />
                 </ProductCard>
             
