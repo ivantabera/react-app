@@ -65,7 +65,7 @@ export const ShoppingPage = () => {
                         >
                             <ProductImage className='custom-image' />
                             <ProductTitle className='white-text' />
-                            <ProductButtons className='custom-buttons'/>
+                            <ProductButtons className='custom-buttons' />
                         </ProductCard>
                     ))
                 }
@@ -73,29 +73,30 @@ export const ShoppingPage = () => {
             </div>
 
             <div className='shopping-cart'>
-                <ProductCard 
-                    product={product1}
-                    className='bg-dark'
-                    style={{ width: '100px' }}
-                >
-                    <ProductImage className='custom-image' />
-                    <ProductButtons className='custom-buttons'/>
-                </ProductCard>
 
-                <ProductCard 
-                    product={product2}
-                    className='bg-dark'
-                    style={{ width: '100px' }}
-                >
-                    <ProductImage className='custom-image' />
-                    <ProductButtons className='custom-buttons'/>
-                </ProductCard>
-            </div>
+                {/* Asi tratamos use state para recorrerlo  */}
+                { 
+                    Object.entries(shoppingCart).map( ([key, product]) => (
 
-            <div>
-                <code>
-                    { JSON.stringify(shoppingCart, null, 5) }
-                </code>
+                        <ProductCard 
+                            key={key}
+                            product={product}
+                            className='bg-dark'
+                            style={{ width: '100px' }}
+                        >
+                            <ProductImage className='custom-image' />
+                            <ProductButtons 
+                                className='custom-buttons'
+                                style={{ 
+                                    display:'flex',
+                                    justifyContent:'center'
+                                }}
+                            />
+                        </ProductCard>
+                        )
+                    ) 
+                }
+                
             </div>
 
         </div>
