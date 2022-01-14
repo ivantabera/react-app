@@ -55,19 +55,20 @@ export const ShoppingPage = () => {
             }}>
 
                 {
-                    products.map( product => (
+                    products.map( (product) => (
                         /* Compound Component Patther forma 1 */ 
                         <ProductCard 
                             key={ product.id }
                             product={product}
                             className='bg-dark'
                             onChange={ onProductCountChange  }
+                            value={ shoppingCart[product.id]?.count || 0 }
                         >
                             <ProductImage className='custom-image' />
                             <ProductTitle className='white-text' />
                             <ProductButtons className='custom-buttons' />
                         </ProductCard>
-                    ))
+                    )) 
                 }
             
             </div>
@@ -83,6 +84,7 @@ export const ShoppingPage = () => {
                             product={product}
                             className='bg-dark'
                             style={{ width: '100px' }}
+                            onChange={ onProductCountChange  }
                             value={product.count}
                         >
                             <ProductImage className='custom-image' />
