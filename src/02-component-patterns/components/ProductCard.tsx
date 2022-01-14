@@ -1,6 +1,6 @@
 import { createContext, CSSProperties, ReactElement } from "react";
 import { useProduct } from '../hooks/useProduct';
-import { IProduct, IProductContextProps } from "../interfaces/interfacesProductCard";
+import { IProduct, IProductContextProps, IOnChangeArgs } from '../interfaces/interfacesProductCard';
 
 import styles from "../styles/styles.module.css";
 
@@ -16,13 +16,13 @@ export interface IPropsProductCard {
     product: IProduct;
     className?: string;
     style?: CSSProperties;
-    onChange?: () => void
+    onChange?: ( args: IOnChangeArgs ) => void
 }
 
 /* Componente hijo que recibe parametro */
 export const ProductCard = ( { children ,product, className, style, onChange }: IPropsProductCard ) => {
 
-    const {count, increaseBy} = useProduct( onChange );
+    const {count, increaseBy} = useProduct( { onChange, product } );
 
     return (
         <Provider value={

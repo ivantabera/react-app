@@ -21,3 +21,8 @@ export interface IPropsProductHOCProps {
     Title: ( Props : IPropsProductTitle  ) => JSX.Element
     Buttons: ( Props : IPropsProductButtons ) => JSX.Element;
 }
+
+export interface IOnChangeArgs {
+    product: IProduct;
+    count:number;
+}
