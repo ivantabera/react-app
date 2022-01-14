@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IProduct, IOnChangeArgs } from '../interfaces/interfacesProductCard';
 
 interface IUseProductArgs  {
@@ -10,9 +10,17 @@ interface IUseProductArgs  {
 export const useProduct = ( {onChange, product, value  = 0 }:IUseProductArgs ) => {
 
     const [count, setCount] = useState( value );
+    
+    const isControlled = useRef(!!onChange)
 
     /* Funcion que no permite bajar del 0 */
     const increaseBy = ( value:number ) => {
+
+        /* Funcion que nos regresa el incremento o el decremento */
+        if (isControlled.current && onChange ) {
+            return onChange({ count:value, product})
+        }
+
         const newValue = Math.max( count + value, 0 ) ;
         setCount( newValue );
 
