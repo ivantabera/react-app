@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IProduct, IOnChangeArgs } from '../interfaces/interfacesProductCard';
 
 interface IUseProductArgs  {
     product:IProduct,
     onChange?: (args:IOnChangeArgs) => void;
+    value?: number
 }
 
-export const useProduct = ( {onChange,product}:IUseProductArgs ) => {
+export const useProduct = ( {onChange, product, value  = 0 }:IUseProductArgs ) => {
 
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState( value );
 
     /* Funcion que no permite bajar del 0 */
     const increaseBy = ( value:number ) => {
@@ -18,6 +19,10 @@ export const useProduct = ( {onChange,product}:IUseProductArgs ) => {
         /* Evaluamos que onChange venga con algun valor de lo contrario no se ejecutara */
         onChange && onChange({ count:newValue, product })
     }
+
+    useEffect(() => {
+        setCount(value);
+    }, [value])
     
     return {
         increaseBy,

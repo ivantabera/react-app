@@ -17,12 +17,13 @@ export interface IPropsProductCard {
     className?: string;
     style?: CSSProperties;
     onChange?: ( args: IOnChangeArgs ) => void
+    value?: number
 }
 
 /* Componente hijo que recibe parametro */
-export const ProductCard = ( { children ,product, className, style, onChange }: IPropsProductCard ) => {
+export const ProductCard = ( { children ,product, className, style, onChange, value }: IPropsProductCard ) => {
 
-    const {count, increaseBy} = useProduct( { onChange, product } );
+    const {count, increaseBy} = useProduct( { onChange, product, value } );
 
     return (
         <Provider value={
