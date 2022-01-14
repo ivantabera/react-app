@@ -1,8 +1,8 @@
+import { useState } from 'react';
+import { IProduct } from '../interfaces/interfacesProductCard';
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
 
 import '../styles/custom-styles.css';
-import { IProduct } from '../interfaces/interfacesProductCard';
-import { useState } from 'react';
 
 const product1 = {
     id:'1',
@@ -24,13 +24,22 @@ interface IProductInCart extends IProduct {
 
 export const ShoppingPage = () => {
 
-    /* el hook state su primitivo sera un objeto con el arreglo key de tipo string 
-        "no es un arreglo es para indicarle al state que seran X cantidad de llaves"
-    */
-    const [shoppingCart, setShoppingCart] = useState<{ [key:string]:IProductInCart }>({});
+    const [shoppingCart, setShoppingCart] = useState<{ [key:string]: IProductInCart }>({});
 
-    const onProductCountChange = ({ count, product}:{ count:number, product:IProduct}) => {
-        console.log('onProductCountChange', count, product);
+    const onProductCountChange = ({ count, product }: { count:number, product:IProduct }) => {
+        
+        setShoppingCart( oldShoppingCart => {
+            /* Eliminar el objeto cuando su count llegue a 0 */
+            if (count === 0) {
+                const { [product.id]:toDelete, ...rest} = oldShoppingCart;
+                return {...rest}
+            }
+
+            return {
+                ...oldShoppingCart,
+                [ product.id ]: { ...product, count }
+            }
+        })
     }
 
     return (
@@ -68,7 +77,6 @@ export const ShoppingPage = () => {
                     product={product1}
                     className='bg-dark'
                     style={{ width: '100px' }}
-                    onChange={ onProductCountChange  }
                 >
                     <ProductImage className='custom-image' />
                     <ProductButtons className='custom-buttons'/>
@@ -82,6 +90,12 @@ export const ShoppingPage = () => {
                     <ProductImage className='custom-image' />
                     <ProductButtons className='custom-buttons'/>
                 </ProductCard>
+            </div>
+
+            <div>
+                <code>
+                    { JSON.stringify(shoppingCart, null, 5) }
+                </code>
             </div>
 
         </div>
