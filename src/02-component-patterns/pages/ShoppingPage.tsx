@@ -1,22 +1,11 @@
 import { useState } from 'react';
 import { IProduct } from '../interfaces/interfacesProductCard';
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
+import { products } from '../data/products';
 
 import '../styles/custom-styles.css';
+import { useShoppingCart } from '../hooks/useShoppingCart';
 
-const product1 = {
-    id:'1',
-    title:'coffe mug',
-    img:'./coffee-mug.png'
-}
-
-const product2 = {
-    id:'2',
-    title:'coffe mug 2',
-    img:'./coffee-mug2.png'
-}
-
-const products:IProduct[] = [ product1, product2 ];
 
 interface IProductInCart extends IProduct {
     count:number;
@@ -24,37 +13,7 @@ interface IProductInCart extends IProduct {
 
 export const ShoppingPage = () => {
 
-    const [shoppingCart, setShoppingCart] = useState<{ [key:string]: IProductInCart }>({});
-
-    const onProductCountChange = ({ count, product }: { count:number, product:IProduct }) => {
-        
-        setShoppingCart( oldShoppingCart => {
-
-            const productInCart:IProductInCart = oldShoppingCart[product.id] || { ...product, count:0 };
-
-            if ( Math.max( productInCart.count + count, 0 ) > 0 ) {
-                productInCart.count += count;
-                return {
-                    ...oldShoppingCart, 
-                    [product.id]: productInCart
-                }
-            }
-
-            const { [product.id]:toDelete, ...rest} = oldShoppingCart;
-            return { ...rest };
-
-            /* Eliminar el objeto cuando su count llegue a 0 */
-        /*  if (count === 0) {
-                const { [product.id]:toDelete, ...rest} = oldShoppingCart;
-                return {...rest}
-            }
-
-            return {
-                ...oldShoppingCart,
-                [ product.id ]: { ...product, count }
-            } */
-        })
-    }
+    const { shoppingCart, onProductCountChange} = useShoppingCart();
 
     return (
         <div>
