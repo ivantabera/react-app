@@ -31,7 +31,6 @@ export const ShoppingPage = () => {
         setShoppingCart( oldShoppingCart => {
 
             const productInCart:IProductInCart = oldShoppingCart[product.id] || { ...product, count:0 };
-            console.log('productInCart', productInCart)
 
             if ( Math.max( productInCart.count + count, 0 ) > 0 ) {
                 productInCart.count += count;
