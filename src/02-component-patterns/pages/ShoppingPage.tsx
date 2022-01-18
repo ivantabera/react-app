@@ -1,4 +1,4 @@
-import { IProduct } from '../interfaces/interfacesProductCard';
+import { IProduct, InitialValues } from '../interfaces/interfacesProductCard';
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
 import { products } from '../data/products';
 
@@ -19,6 +19,10 @@ export const ShoppingPage = () => {
                 key={ product.id }
                 product={product}
                 className='bg-dark'
+                initialValues={{
+                    count:4,
+                    maxCount:10
+                }}
             >
                 <ProductImage className='custom-image' />
                 <ProductTitle className='white-text' />

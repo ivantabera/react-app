@@ -30,3 +30,8 @@ export interface IOnChangeArgs {
 export interface IProductInCart extends IProduct {
     count:number;
 }
+
+export interface InitialValues {
+    count?:number;
+    maxCount?:number;
+}

@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { IProduct, IOnChangeArgs } from '../interfaces/interfacesProductCard';
+import { IProduct, IOnChangeArgs, InitialValues } from '../interfaces/interfacesProductCard';
 
 interface IUseProductArgs  {
     product:IProduct,
     onChange?: (args:IOnChangeArgs) => void;
-    value?: number
+    value?: number;
+    initialValues?:InitialValues;
 }
 
-export const useProduct = ( {onChange, product, value  = 0 }:IUseProductArgs ) => {
+export const useProduct = ( {onChange, product, value  = 0, initialValues }:IUseProductArgs ) => {
 
-    const [count, setCount] = useState( value );
+    const [count, setCount] = useState<number>( initialValues?.count || value );
     
 
     /* Funcion que no permite bajar del 0 */
