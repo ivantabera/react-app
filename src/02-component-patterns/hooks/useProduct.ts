@@ -12,12 +12,20 @@ export const useProduct = ( {onChange, product, value  = 0, initialValues }:IUse
 
     const [count, setCount] = useState<number>( initialValues?.count || value );
     
-    const isMounted = useRef(false)
+    const isMounted = useRef(false);
 
     /* Funcion que no permite bajar del 0 */
     const increaseBy = ( value:number ) => {
 
-        const newValue = Math.max( count + value, 0 ) ;
+        let newValue = Math.max( count + value, 0 ) ;
+
+        /* Validar si el initialValues viene definido con la propiedad maxCount y ejecutar el math.min */
+        if (initialValues?.maxCount) {
+            /* Tomara el valor mas pequeño en este caso initialvalues viene con un valor fijo y en 
+            algun momento sera el mas pequeño ahi es donde frena nuestra ejecucion */
+            newValue = Math.min( newValue, initialValues.maxCount ) ;
+        }
+
         setCount( newValue );
 
         /* Evaluamos que onChange venga con algun valor de lo contrario no se ejecutara */

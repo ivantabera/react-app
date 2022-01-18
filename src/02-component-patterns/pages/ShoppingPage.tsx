@@ -1,4 +1,3 @@
-import { IProduct, InitialValues } from '../interfaces/interfacesProductCard';
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
 import { products } from '../data/products';
 
