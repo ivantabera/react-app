@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IProduct, IOnChangeArgs, InitialValues } from '../interfaces/interfacesProductCard';
 
 interface IUseProductArgs  {
@@ -12,6 +12,7 @@ export const useProduct = ( {onChange, product, value  = 0, initialValues }:IUse
 
     const [count, setCount] = useState<number>( initialValues?.count || value );
     
+    const isMounted = useRef(false)
 
     /* Funcion que no permite bajar del 0 */
     const increaseBy = ( value:number ) => {
@@ -24,8 +25,13 @@ export const useProduct = ( {onChange, product, value  = 0, initialValues }:IUse
     }
 
     useEffect(() => {
+        if( !isMounted.current ) return;
         setCount(value);
-    }, [value])
+    }, [value]);
+
+    useEffect(() => {
+        isMounted.current = true;
+    }, [])
     
     return {
         increaseBy,
