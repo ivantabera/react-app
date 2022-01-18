@@ -23,9 +23,16 @@ export const ShoppingPage = () => {
                     maxCount:10
                 }}
             >
-                <ProductImage className='custom-image' />
-                <ProductTitle className='white-text' />
-                <ProductButtons className='custom-buttons' />
+                {
+                    () => (
+                        <>
+                            <ProductImage className='custom-image' />
+                            <ProductTitle className='white-text' />
+                            <ProductButtons className='custom-buttons' />
+                        </>
+                    )
+                }
+                
             </ProductCard>
 
         </div>
