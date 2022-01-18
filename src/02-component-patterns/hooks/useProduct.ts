@@ -14,15 +14,15 @@ export const useProduct = ( {onChange, product, value  = 0, initialValues }:IUse
     
     const isMounted = useRef(false);
 
-    /* Funcion que no permite bajar del 0 */
+    /* Funcion para incrementar o decrementar */
     const increaseBy = ( value:number ) => {
 
+        /* Tomara el valor mas grande y se asignara a la  variable, si el valor es menor a 0 se asignara por defecto el 0 */
         let newValue = Math.max( count + value, 0 ) ;
 
-        /* Validar si el initialValues viene definido con la propiedad maxCount y ejecutar el math.min */
+        /* Validar si el initialValues viene definido con la propiedad maxCount */
         if (initialValues?.maxCount) {
-            /* Tomara el valor mas pequeño en este caso initialvalues viene con un valor fijo y en 
-            algun momento sera el mas pequeño ahi es donde frena nuestra ejecucion */
+            /* Tomara el valor mas pequeño y se asignara a la  variable  */
             newValue = Math.min( newValue, initialValues.maxCount ) ;
         }
 
@@ -32,6 +32,7 @@ export const useProduct = ( {onChange, product, value  = 0, initialValues }:IUse
         onChange && onChange({ count:newValue, product })
     }
 
+    /* Mostrar el initialValue en el componente */
     useEffect(() => {
         if( !isMounted.current ) return;
         setCount(value);
