@@ -1,4 +1,4 @@
-import { createContext, CSSProperties, ReactElement } from "react";
+import React, { createContext, CSSProperties } from "react";
 import { useProduct } from '../hooks/useProduct';
 import { IProduct, IProductContextProps, IOnChangeArgs, InitialValues, IProductCardHandlers } from '../interfaces/interfacesProductCard';
 
@@ -13,7 +13,6 @@ const { Provider } = ProductContext;
 
 export interface IPropsProductCard {
     product: IProduct;
-    // children: ReactElement | ReactElement[] ;
     children:( args: IProductCardHandlers ) => JSX.Element;
     className?: string;
     style?: CSSProperties;
