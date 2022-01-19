@@ -44,6 +44,7 @@ export const useProduct = ( {onChange, product, value  = 0, initialValues }:IUse
     
     return {
         increaseBy,
-        count
+        count,
+        maxCount:initialValues?.maxCount
     }
 }

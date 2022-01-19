@@ -11,8 +11,9 @@ export interface IProduct {
 
 export interface IProductContextProps {
     count:number;
-    increaseBy: (value: number) => void;
+    maxCount?:number;
     product: IProduct;
+    increaseBy: (value: number) => void;
 }
 
 export interface IPropsProductHOCProps {

@@ -25,14 +25,15 @@ export interface IPropsProductCard {
 /* Componente hijo que recibe parametro */
 export const ProductCard = ( { children ,product, className, style, onChange, value, initialValues }: IPropsProductCard ) => {
 
-    const {count, increaseBy} = useProduct( { onChange, product, value, initialValues } );
+    const {count, increaseBy, maxCount} = useProduct( { onChange, product, value, initialValues } );
 
     return (
         <Provider value={
             {
                 count,
                 increaseBy, 
-                product
+                product,
+                maxCount
             }
         }>
             <div 
