@@ -36,3 +36,12 @@ export interface InitialValues {
     count?:number;
     maxCount?:number;
 }
+
+export interface IProductCardHandlers{
+    count:number;
+    isMaxCountReached: boolean;
+    maxCount?:number;
+    product:IProduct;
+    increaseBy:(value:number) => void;
+    reset:()=> void;
+}
