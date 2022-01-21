@@ -1,7 +1,9 @@
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from "react-router-dom";
 import logo  from '../logo.svg';
 
-import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/pages/index';
+import { LazyPage2, LazyPage3 } from '../01-lazyload/pages/index';
+import { RegisterPage } from '../03-forms/pages/RegisterPage';
+
 
 export const Navigation = () => {
     return (
@@ -13,10 +15,10 @@ export const Navigation = () => {
                     <ul>
                         <li>
                             <NavLink 
-                                to="/lazypage1" 
+                                to="/register" 
                                 className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
                             >
-                                Lazy page 1
+                                Register Page
                             </NavLink>
                         </li>
                         <li>
@@ -39,10 +41,10 @@ export const Navigation = () => {
                 </nav>
 
                 <Routes>
-                    <Route path="lazypage1" element={ <LazyPage1/> } />
+                    <Route path="register" element={ <RegisterPage/> } />
                     <Route path="lazypage2" element={ <LazyPage2/> } />
                     <Route path="lazypage3" element={ <LazyPage3/> } />
-                    <Route path="lazypage1" element={ <Navigate to="lazypage1" replace /> } />
+                    <Route path="register" element={ <Navigate to="register" replace /> } />
                 </Routes>
             </div>
 
