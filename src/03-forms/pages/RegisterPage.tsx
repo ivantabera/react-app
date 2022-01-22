@@ -1,53 +1,68 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import "../styles/styles.css";
 
 export const RegisterPage = () => {
 
     const [registerData, setRegisterData] = useState({
-        name:'Ivan tabera', 
-        email:'ivantabera19@gmail.com', 
-        password1:'123456', 
-        password2:'123456',
+        name:'',
+        email:'',
+        password1:'',
+        password2:'',
     });
 
     const { name, email, password1, password2 } = registerData;
 
-    const onChange = ( ev:ChangeEvent<HTMLInputElement> ) => {
-        console.log('ev', ev.target.value)
-    }
+    const handleInputChange = ( event:ChangeEvent<HTMLInputElement> ) => {
+        console.log('event', event.target.value)
+
+        setRegisterData({
+            ...registerData,
+            [ event.target.name ]: event.target.value
+        })
+    };
+
+    const onSubmit = (event:FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        console.log( registerData );
+    };  
 
     return (
         <div>
             <h1>Register page</h1>
 
-            <form>
+            <form onSubmit={ onSubmit }>
 
                 <input 
+                    name="name"
                     type="text"
                     placeholder="Name"
                     value={ name }
-                    onChange={ onChange }
+                    onChange={ handleInputChange }
                 />
                 
                 <input 
+                    name="email"
                     type="email" 
                     placeholder="Email"
                     value={ email }
-                    onChange={ onChange }
+                    onChange={ handleInputChange }
                 />
 
                 <input 
+                    name="password1"
                     type="password" 
                     placeholder="Password"
                     value={ password1 }
-                    onChange={ onChange }
+                    onChange={ handleInputChange }
                 />
 
                 <input 
+                    name="password2"
                     type="password" 
                     placeholder="Repeat Password"
                     value={ password2 }
-                    onChange={ onChange }
+                    onChange={ handleInputChange }
                 />
 
                 <button type="submit">Create</button>
