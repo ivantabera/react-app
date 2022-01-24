@@ -35,7 +35,15 @@ export const FormikBasicPage = () => {
         return errors
     };
 
-    const { handleChange, values, handleSubmit } = useFormik({
+    /* 
+        handleChange : Se ejecuta si hay cambios en el input
+        values : obtener el valor del input 
+        handleSubmit : Se ejecuta si hay algun submit del formulario
+        errors : nos informa de los errores del formulario
+        touched : se ejecuta si algun input fue tocado
+        handleBlur : se ejecuta si algun input fue manipulado o si se salio de el 
+    */
+    const { handleChange, values, handleSubmit, errors, touched, handleBlur } = useFormik({
         initialValues:{
             firstName:'',
             lastName:'',
@@ -58,27 +66,30 @@ export const FormikBasicPage = () => {
                     type="text" 
                     name="firstName" 
                     onChange={ handleChange}
+                    onBlur={ handleBlur }
                     value={ values.firstName }
                 />
-                <span>Este campo es requerido</span>
+                { touched.firstName && errors.firstName && <span>{ errors.firstName }</span>}
 
                 <label htmlFor="lastName">Last Name</label>
                 <input 
                     type="text" 
                     name="lastName" 
                     onChange={ handleChange}
+                    onBlur={ handleBlur }
                     value={ values.lastName }
                 />
-                <span>Este campo es requerido</span>
+                { touched.lastName && errors.lastName && <span>{ errors.lastName }</span>}
 
                 <label htmlFor="email">Email</label>
                 <input 
                     type="email" 
                     name="email" 
                     onChange={ handleChange}
+                    onBlur={ handleBlur }
                     value={ values.email }
                 />
-                <span>Verifica el formato del email</span>
+                { touched.email && errors.email && <span>{ errors.email }</span>}
 
                 <button type="submit">Create</button>
                 
