@@ -3,12 +3,6 @@ import * as yup from 'yup';
 
 import '../styles/styles.css';
 
-interface FormValues{ 
-    firstName:string, 
-    lastName:string, 
-    email:string
-}
-
 export const FormikYupPage = () => {
 
     /* 
@@ -18,10 +12,17 @@ export const FormikYupPage = () => {
         errors : nos informa de los errores del formulario
         touched : se ejecuta si algun input fue tocado
         handleBlur : se ejecuta si algun input fue manipulado o si se salio de el 
+
+        -*-*-*-*-*-*-*-*-*-*-
+        Con esta propiedad reducimos el codigo bastante ya que nos envia las 
+        propiedades del campo en un objeto ejecutando el nombre del campo para que 
+        identifique sus validaciones del yup.
+        Estas son las propiedades del hook que nos ahorramos por este objeto (handleChange, values, handleBlur)
+        -*-*-*-*-*-*-*-*-*-*-
         getFieldProps : envia las propiedades de los campos
     */
     const { 
-        handleChange, values, handleSubmit, errors, touched, handleBlur, getFieldProps
+        handleSubmit, errors, touched, getFieldProps
     } = useFormik({
         initialValues:{
             firstName:'',
