@@ -37,11 +37,11 @@ export const FormikYupPage = () => {
                         .max(15, 'Debe tener 15 caracteres o menos')
                         .required('Requerido'),
             lastName:   yup.string()
-                        .max(15, 'Debe tener 15 caracteres o menos').
-                        required('Requerido'),
+                        .max(15, 'Debe tener 15 caracteres o menos')
+                        .required('Requerido'),
             email:      yup.string()
-                        .email('Formato de email es invalido').
-                        required('Requerido'),
+                        .email('Formato de email es invalido')
+                        .required('Requerido'),
         })
     })
 
