@@ -1,10 +1,10 @@
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from "react-router-dom";
-import logo  from '../logo.svg';
 
-import { LazyPage2, LazyPage3 } from '../01-lazyload/pages/index';
 import { RegisterPage } from '../03-forms/pages/RegisterPage';
 import { FormikBasicPage } from "../03-forms/pages/FormikBasicPage";
+import { FormikYupPage } from "../03-forms/pages/FormikYupPage";
 
+import logo  from '../logo.svg';
 
 export const Navigation = () => {
     return (
@@ -32,10 +32,10 @@ export const Navigation = () => {
                         </li>
                         <li>
                             <NavLink 
-                                to="/lazypage3" 
+                                to="/formik-yup" 
                                 className={ ( {isActive} ) => isActive ? 'nav-active' : '' }
                             >
-                                Lazy page 3
+                                Formik Yup
                             </NavLink>
                         </li>
                     </ul>
@@ -44,7 +44,7 @@ export const Navigation = () => {
                 <Routes>
                     <Route path="register" element={ <RegisterPage/> } />
                     <Route path="formik-basic" element={ <FormikBasicPage/> } />
-                    <Route path="lazypage3" element={ <LazyPage3/> } />
+                    <Route path="formik-yup" element={ <FormikYupPage/> } />
                     <Route path="register" element={ <Navigate to="register" replace /> } />
                 </Routes>
             </div>
