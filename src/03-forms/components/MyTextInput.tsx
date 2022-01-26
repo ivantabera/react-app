@@ -10,7 +10,7 @@ interface Props{
 
 export const MyTextInput = ( { label, ...props }:Props ) => {
 
-    const [field, meta] = useField(props);
+    const [field] = useField(props);
 
     return (
         <>
