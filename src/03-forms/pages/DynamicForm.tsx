@@ -3,12 +3,29 @@ import { MyTextInput } from "../components";
 
 import formJson from '../data/custom-form.json';
 import { MySelect } from '../components/MySelect';
+import * as Yup from 'yup';
 
 const InitialValues:{ [key:string]:any } = {};
+const requiredFiles:{ [key:string]:any } = {};
 
 for (const input of formJson) {
-    InitialValues[input.name] = input.value 
+    InitialValues[input.name] = input.value;
+    
+    if ( !input.validations ) continue;
+
+    let schema = Yup.string()
+
+    for (const rule of input.validations) {
+        if (rule.type === 'required') {
+            schema = schema.required('Este campo es requerido')
+        }
+    }
+    
+    requiredFiles[input.name] = schema;
 }
+
+const validationSchema = Yup.object( {...requiredFiles} );
+
 
 export const DynamicForm = () => {
     return (
@@ -20,6 +37,7 @@ export const DynamicForm = () => {
                 onSubmit={ values => {
                     console.log('values', values)
                 } }
+                validationSchema={ validationSchema }
             >
 
                 {

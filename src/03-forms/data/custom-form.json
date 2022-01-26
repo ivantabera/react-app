@@ -4,21 +4,36 @@
         "name":"firstName",
         "placeholder":"Ivan",
         "label":"First Name",
-        "value":""
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            }
+        ]
     },
     {
         "type":"input", 
         "name":"lastName",
         "placeholder":"Tabera",
         "label":"Last Name",
-        "value":""
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            }
+        ]
     },
     {
         "type":"email", 
         "name":"email",
         "placeholder":"ivan@gmail.com",
         "label":"Email",
-        "value":""
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            }
+        ]
     },
     {
         "type":"select", 
@@ -37,6 +52,11 @@
             {
                 "id":"3",
                 "label":"Call of Duty"
+            }
+        ],
+        "validations":[
+            {
+                "type":"required"
             }
         ]
     }
