@@ -19,5 +19,25 @@
         "placeholder":"ivan@gmail.com",
         "label":"Email",
         "value":""
+    },
+    {
+        "type":"select", 
+        "name":"favoritGame",
+        "label":"Favorite Game",
+        "value":"",
+        "options":[
+            {
+                "id":"1",
+                "label":"Halo"
+            },
+            {
+                "id":"2",
+                "label":"Fifa"
+            },
+            {
+                "id":"3",
+                "label":"Call of Duty"
+            }
+        ]
     }
 ]

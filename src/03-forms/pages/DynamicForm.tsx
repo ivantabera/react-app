@@ -2,6 +2,7 @@ import { Formik, Form } from "formik";
 import { MyTextInput } from "../components";
 
 import formJson from '../data/custom-form.json';
+import { MySelect } from '../components/MySelect';
 
 const InitialValues:{ [key:string]:any } = {};
 
@@ -26,17 +27,35 @@ export const DynamicForm = () => {
 
                         <Form noValidate>
                             {
-                                formJson.map( ( { label, name, placeholder, type, value } ) => {
+                                formJson.map( ( { label, name, placeholder, type, options } ) => {
 
-                                    return (
-                                        <MyTextInput 
-                                            key={name}
-                                            label={label} 
-                                            name={name} 
-                                            placeholder={placeholder}
-                                            type={(type as any)}
-                                        />
-                                    )
+                                    if ( type === 'input' || type === 'email' || type === 'password' ) {
+                                        return (
+                                            <MyTextInput 
+                                                key={name}
+                                                label={label} 
+                                                name={name} 
+                                                placeholder={placeholder}
+                                                type={(type as any)}
+                                            />
+                                        )
+                                    } else if ( type === 'select' ) {
+                                        return (
+                                            <MySelect 
+                                                key={name}
+                                                label={label} 
+                                                name={name}
+                                            >
+                                                <option value="">Select an option </option>
+                                                {
+                                                    options?.map( opt => (
+                                                        <option key={opt.id} value={opt.id}>{opt.label}</option>
+                                                    ) )
+                                                }
+                                            </MySelect>
+                                        )
+                                    }
+                                    
                                 })
                             }
 
