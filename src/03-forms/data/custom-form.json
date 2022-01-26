@@ -1,0 +1,23 @@
+[
+    {
+        "type":"input", 
+        "name":"firstName",
+        "placeholder":"Ivan",
+        "label":"First Name",
+        "value":""
+    },
+    {
+        "type":"input", 
+        "name":"lastName",
+        "placeholder":"Tabera",
+        "label":"Last Name",
+        "value":""
+    },
+    {
+        "type":"email", 
+        "name":"email",
+        "placeholder":"ivan@gmail.com",
+        "label":"Email",
+        "value":""
+    }
+]
