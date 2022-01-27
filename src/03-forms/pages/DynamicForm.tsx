@@ -8,20 +8,28 @@ import * as Yup from 'yup';
 const InitialValues:{ [key:string]:any } = {};
 const requiredFiles:{ [key:string]:any } = {};
 
-for (const input of formJson) {
-    InitialValues[input.name] = input.value;
+/* Iterar con forof  la data  para crear la validacion dinamica */
+for (const typeForm of formJson) {
     
-    if ( !input.validations ) continue;
+    /* llenar el initialValues le ponemos su propiedad que apunte al valor */
+    InitialValues[typeForm.name] = typeForm.value;
+    
+    /* Si no hay validaciones continuar */
+    if ( !typeForm.validations ) continue;
+
 
     let schema = Yup.string()
 
-    for (const rule of input.validations) {
+    /* iteramos las validaciones  */
+    for (const rule of typeForm.validations) {
+        /* si alguna validacion es igual a required la vamos almacenar en la variable en cada iteracion */
         if (rule.type === 'required') {
             schema = schema.required('Este campo es requerido')
         }
     }
     
-    requiredFiles[input.name] = schema;
+    /* llenar el requiredFiles que tengan una validacion en nuestra variable schema */
+    requiredFiles[typeForm.name] = schema;
 }
 
 const validationSchema = Yup.object( {...requiredFiles} );
