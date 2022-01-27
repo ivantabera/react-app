@@ -22,9 +22,26 @@ for (const typeForm of formJson) {
 
     /* iteramos las validaciones  */
     for (const rule of typeForm.validations) {
+        console.log('rule', rule)
         /* si alguna validacion es igual a required la vamos almacenar en la variable en cada iteracion */
         if (rule.type === 'required') {
             schema = schema.required('Este campo es requerido')
+        }
+
+        if (rule.type === 'minLength') {
+            schema = schema.min( (rule as any).value || 3 , `Debe tener mas de ${ (rule as any).value || 3 } caracteres` );
+        }
+
+        if (rule.type === 'maxLength') {
+            schema = schema.max( (rule as any).value || 12 , `Debe tener menos de ${ (rule as any).value || 12 } caracteres` );
+        }
+
+        if (rule.type === 'email') {
+            schema = schema.email('El formato debe ser "example@mail.com"')
+        }
+
+        if (rule.type === 'notOneOf') {
+            schema = schema.notOneOf( [(rule as any).value] , `${ [(rule as any).label] } Esta opcion no esta disponible ` )
         }
     }
     

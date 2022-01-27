@@ -2,36 +2,55 @@
     {
         "type":"input", 
         "name":"firstName",
-        "placeholder":"Ivan",
+        "placeholder":"Nombre",
         "label":"First Name",
         "value":"",
         "validations":[
             {
                 "type":"required"
+            },
+            {
+                "type":"minLength",
+                "value":"2"
+            },
+            {
+                "type":"maxLength",
+                "value":"15"
             }
         ]
     },
     {
         "type":"input", 
         "name":"lastName",
-        "placeholder":"Tabera",
+        "placeholder":"Apellido",
         "label":"Last Name",
         "value":"",
         "validations":[
             {
                 "type":"required"
+            },
+            {
+                "type":"minLength",
+                "value":"2"
+            },
+            {
+                "type":"maxLength",
+                "value":"15"
             }
         ]
     },
     {
         "type":"email", 
         "name":"email",
-        "placeholder":"ivan@gmail.com",
+        "placeholder":"example@mail.com",
         "label":"Email",
         "value":"",
         "validations":[
             {
                 "type":"required"
+            },
+            {
+                "type":"email"
             }
         ]
     },
@@ -57,6 +76,10 @@
         "validations":[
             {
                 "type":"required"
+            },
+            {
+                "type":"notOneOf",
+                "value":"2"
             }
         ]
     }
